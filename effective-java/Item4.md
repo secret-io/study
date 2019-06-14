@@ -24,12 +24,12 @@ public abstract class Figure implements FigureMessage , FigureProperty{
 ```
 
 
-
-## 참고 
+##
+**참고**
 ###### 상속을 금지하려면  (129p 참고)
 * 클래스를 *final* 로 선언한다. 
 * 생성자 모두를 외부에서 접근할 수 없도록 만들면 된다.
-
+##
 
 
 
