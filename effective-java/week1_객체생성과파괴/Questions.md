@@ -4,6 +4,8 @@
 * enumset
     * http://alecture.blogspot.com/2012/11/enumset.html
     * https://www.baeldung.com/java-enumset
+* 반환할 객체의 클래스가 존재하지 않아도 된다.
+    * 무슨의미?
 
 #### Item2
 * 점층적 생성자 패턴(telescoping constructor pattern)
@@ -22,3 +24,9 @@
 ### Item3
 * 리플렉션 공격은 실제하는가? 어떻게 왜 일어나는가?
 * 정말 싱글턴 생성 방법 중 열거타입(enum)이 가장 좋은가?
+    * 
+* 정적 팩터리의 메서드 참조를 공급자(supplier)로 사용할 수 있다는 점
+  가령 Elvis::getInstance를 Supplier로 사용하는 식(Item 43, 44)
+  
+### Item7
+* 콜백 개념 이해하기
