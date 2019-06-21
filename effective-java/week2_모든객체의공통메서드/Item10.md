@@ -26,7 +26,7 @@
 
 ##
 
-equals를 재정의하지 않아도 되는것  
+equals를 재정의하지 않아도 될 때
 1. 인스턴스 통제 클래스
     * 싱글턴 클래스
     * 인스턴스화 불가(private 생성자)
@@ -52,7 +52,8 @@ equals를 재정의하지 않아도 되는것
 
 컬렉션 클래스들을 포함해 많은 클래스는 전달받은 객체가 equals 규약을 지킨다고 가정하고 동작한다.  
 
-Object 명세에서 말하는 동치관계란 쉽게말해, 집합을 서로 같은 원소들로 이뤄진 부분집합으로 나누는 연산이다. 이 부분집합을 동치류(equivalence class; 동치 클래스)라 한다.  
+Object 명세에서 말하는 동치관계란 쉽게말해, 집합을 서로 같은 원소들로 이뤄진 부분집합으로 나누는 연산이다.   
+이 부분집합을 동치류(equivalence class; 동치 클래스)라 한다.  
 equals 메서드가 쓸모 있으려면 모든 원소가 같은 동치류에 속한 어떤 원소와도 서로 교환할 수 있어야 한다.
 
 ---
@@ -111,7 +112,8 @@ public boolean equals(Object anObject) {
         return false;
     }
 ```
-이 문제를 해결하려면 CaseInsensitiveString 의 equals를 String과도 연동 하겠다는 허황한 꿈을 버려야한다 그 결과 간결한 equals메서드를 만들 수 있다.
+이 문제를 해결하려면 CaseInsensitiveString 의 equals를 String과도 연동 하겠다는 허황한 꿈을 버려야한다.  
+그 결과 간결한 equals메서드를 만들 수 있다.
 
 ```java
 @Override
@@ -162,17 +164,17 @@ ColorPoint의 equals메서드는 어떻게 고쳐야 할까?
 
 ```java
 //ColorPoint의 equals 메서드
- @Override
-        public boolean equals(Object o) {
-            if (!(o instanceof ColorPoint)) //비교대상이 Point이면 항상 false
-                return false;
-            return super.equals(o) && ((ColorPoint) o).color == color;
-        }
+   @Override
+   public boolean equals(Object o) {
+      if (!(o instanceof ColorPoint)) //비교대상이 Point이면 항상 false
+          return false;
+      return super.equals(o) && ((ColorPoint) o).color == color;
+   }
 ```
-다음 코드는 비교 대상이 ColorPoint이고 위치와 색상이 같을때만 true를 반환하는 메서드이다.  
-그런데 이메서드는 일반 Point를 ColorPoint에 비교한 결과가 다를 수 있다.
+위 코드는 비교 대상이 ColorPoint이고 위치와 색상이 같을때만 true를 반환하는 메서드이다.  
+그런데 이 메서드는 일반 Point를 ColorPoint에 비교한 결과가 다를 수 있다.  
 ColorPoint의 equals는 입력 매개변수의 클래스 종류가 다르다며 매번 false만 반환할 것이다.  
-
+##
 ```java
 @Override
         public boolean equals(Object o) {
@@ -237,7 +239,8 @@ public class counterPoint extends Point {
     ...
 }
 ```
-point 클래스의 equals메서드를 getClass를 사용해 작성했다면 onUnitCircle은 false를 반환 할 것 이다.
+point 클래스의 equals메서드를 getClass를 사용해 작성했다면 onUnitCircle은 false를 반환 할 것 이다.  
+
 **원인은 컬렉션 구현체에서 주어진 원소를 담고 있는지를 확인하는 방법에 있다. Set을 포함하여 대부분의 컬렉션은 이 작업에 equals를 메서드를 이용한다.**  
 CounterPoint의 인스턴스는 어떤 Point와 같을 수 없기 때문이다. 반면 Point의 equals를 instanceof 기반으로 올바로 구현했다면 CounterPoint 인스턴스를 건네줘도 onUnitCircle 메서드가 제대로 동작 할 것이다.
 
@@ -318,11 +321,15 @@ instanceof는 입력이 null이면 타입 확인 단계에서 false를 반환하
 
 ## 
   
-![기본타입 참조타입](https://t1.daumcdn.net/cfile/tistory/99E8E24B5B613AB212)  
+![기본타입 참조타입](https://t1.daumcdn.net/cfile/tistory/99E8E24B5B613AB212)
+
+##
+
 float와 double을 제외한 기본 타입 필드는 == 연산자로 비교하고, 참조 타입 필드는 각각의 equals 메서드로 비교한다.  
 float와 double 필드는 각각 정적 메서드인 Float.compare(float,float)와Double.compare(double,double)로 비교한다.  
 *float와 double을 특별히 취급하는 이유는 Float.NaN, -0.0f, 특수한 부동소수 값등을 다뤄야 하기 때문이다.*  
-이 메서드들은 오토박싱을 수반할 수 있으니 성능상 좋지 않다. 배열 필드는 원소 각각을 앞서의 지침대로 비교한다. 배열의 모든 원소가 핵심 필드라면 Arrays.equals메서드들 중 하나를 사용하자.
+이 메서드들은 오토박싱을 수반할 수 있으니 성능상 좋지 않다. 배열 필드는 원소 각각을 앞서의 지침대로 비교한다.  
+배열의 모든 원소가 핵심 필드라면 Arrays.equals메서드들 중 하나를 사용하자.
 
 ```java
 String[] arr = {"a","b","c","d","e","f"};
@@ -364,7 +371,8 @@ public boolean equals(MyClass o) {
     ...
 }
 ```
-이 메서드는 Object.equals를 재정의 한게 아니다. 입력 타입이 Object가 아니므로 재정의가 아니라 다중정의(아이템 52)한 것이다. 기본 equals를 그대로 둔 채로 추가한 것일지라도, 이처럼 타입을 '구체적으로 명시한' equals는 오히려 해가 된다.  
+이 메서드는 Object.equals를 재정의 한게 아니다. 입력 타입이 Object가 아니므로 재정의가 아니라 다중정의(아이템 52)한 것이다.  
+기본 equals를 그대로 둔 채로 추가한 것일지라도, 이처럼 타입을 '구체적으로 명시한' equals는 오히려 해가 된다.  
 이 메서드는 하위 클래스에서의 @Override 애너테이션이 긍정 오류(false positive; 거짓 양성)를 내게 하고 보안 측면에서도 잘 못된 정보를 준다.
 
 ```java
@@ -380,9 +388,10 @@ equals(hashCode도 마찬가지)를 작성하고 테스트하는 일은 지루�
 ---
 
 >핵심정리  
+```
 1. 꼭 필요한 경우가 아니라면 equals를 재정의 하지 말자.(많은 경우 Object의 equals가 원하는 비교를 정확히 수행해준다.)
 2. 재정의해야 할때는 그 클래스의 핵심 필드를 빠짐없이, 다섯가지 규약을 확실히 지킨다.
 3. AutoValue 프레임워크를 적극 활용하자.
-
+```
 
 
