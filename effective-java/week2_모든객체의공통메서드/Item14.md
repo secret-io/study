@@ -19,8 +19,8 @@ public interface Comparable<T> {
 * Comparable 인터페이스의 유일한 메서드 compareTo()
 * compareTo는 Obejct의 메서드가 아니다
 * 성격은 두 가지만 빼면 Object의 equals와 같다
-    1. 단순 동치성 비교에 + 순서까지 비교할 수 있다
-    2. 제네릭하다
+    1. 단순 동치성 비교에 + `순서`까지 비교할 수 있다
+    2. `제네릭`하다
 * Comparable을 구현했다 -> 해당 클래스의 인스턴스들에는 자연적인 순서가 있음을 뜻한다
 
 ---
@@ -38,3 +38,9 @@ public interface Comparable<T> {
 3. 크기가 같은 객체들끼리는 어떤 객체와 비교하더라도 항상 같아야 한다
 4. **compareTo 메서드로 수행한 동치성 검사의 결과가 equals와 같아야 한다(필수는 아니지만 꼭 지키길 권장)**
 
+
+> compareTo 메서드는 각 필드가 동치인지를 비교하는게 아니라, 그 `순서`를 비교
+
+Comparable을 구현하지 않은 필드나 표준이 아닌 순서로 비교해야 한다면 `비교자(Comparator)`를 사용
+1. 직접 구현
+2. 자바가 제공하는 것에서 취사 선택

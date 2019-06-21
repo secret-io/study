@@ -18,7 +18,7 @@ public final class CaseInsensitiveString implements Comparable<CaseInsensitiveSt
     public int compareTo(CaseInsensitiveString cis) {
         //TODO
         // 관계연산자 <, > 를 사용하기 보다는 정적 메서드 .compare()를 사용하자
-        // 박싱 된 기본타입클래스에서 제공한다(Double.compare, Float.compare 등)
+        // 자바 7부터 박싱 된 기본타입클래스에서 제공한다(Double.compare, Float.compare 등)
         return String.CASE_INSENSITIVE_ORDER.compare(s, cis.s);
     }
 
