@@ -332,9 +332,9 @@ float와 double 필드는 각각 정적 메서드인 Float.compare(float,float)�
 배열의 모든 원소가 핵심 필드라면 Arrays.equals메서드들 중 하나를 사용하자.
 
 ```java
-String[] arr = {"a","b","c","d","e","f"};
-        String[] arr2 = {"a","b","c","d","e","h"};
-        System.out.println(Arrays.equals(arr,arr2)); // true
+     String[] arr = {"a","b","c","d","e","f"};
+     String[] arr2 = {"a","b","c","d","e","h"};
+     System.out.println(Arrays.equals(arr,arr2)); // true
 
     List<String> list = new ArrayList<>(Arrays.asList("a","b","c","d","e"));
     List<String> list2 = new ArrayList<>(Arrays.asList("a","b","c","d","h"));
@@ -371,7 +371,8 @@ public boolean equals(MyClass o) {
     ...
 }
 ```
-이 메서드는 Object.equals를 재정의 한게 아니다. 입력 타입이 Object가 아니므로 재정의가 아니라 다중정의(아이템 52)한 것이다.  
+이 메서드는 Object.equals를 재정의 한게 아니다.  
+입력 타입이 Object가 아니므로 재정의가 아니라 다중정의(아이템 52)한 것이다.  
 기본 equals를 그대로 둔 채로 추가한 것일지라도, 이처럼 타입을 '구체적으로 명시한' equals는 오히려 해가 된다.  
 이 메서드는 하위 클래스에서의 @Override 애너테이션이 긍정 오류(false positive; 거짓 양성)를 내게 하고 보안 측면에서도 잘 못된 정보를 준다.
 
@@ -382,7 +383,7 @@ public boolean equals(MyClass o) {
     ...
 }
 ```
-equals(hashCode도 마찬가지)를 작성하고 테스트하는 일은 지루하고 테스트 코드도 뻔하다.
+equals(hashCode도 마찬가지)를 작성하고 테스트하는 일은 지루하고 테스트 코드도 뻔하다.  
 이 작업을 대신해줄 오픈소스가 있으니 바로 **구글이 만든 AutoValue 프레임 워크다.**
 
 ---
