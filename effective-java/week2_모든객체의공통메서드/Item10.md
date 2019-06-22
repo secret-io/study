@@ -249,7 +249,7 @@ CounterPoint의 인스턴스는 어떤 Point와 같을 수 없기 때문이다. 
 
 
 ```java
-class ColorPoint extends Point {
+class ColorPoint {
         private final Point point;
         private final Color color;
 
