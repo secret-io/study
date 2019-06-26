@@ -30,3 +30,6 @@
   
 ### Item7
 * 콜백 개념 이해하기
+
+### Item22
+* 이진 호환성이란? (binary compatibility)
